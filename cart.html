@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Cart — Target Clone</title>
+			<link rel="stylesheet" href="style.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar">
+				<a href="index.html"><img src="BullseyeRed.svg" alt="logo"></a>
+				<form class="search-bar">
+					<input type="text" placeholder="Search products" />
+					<button type="submit"><span class="material-icons">search</span></button>
+				</form>
+				<div class="actions">
+						<img src="Account.svg" alt="account" />
+						<img src="Cart.svg" alt="cart" />
+				</div>
+			</nav>
+
+			<main class="page-main">
+				<div class="site-inner">
+					<h1 class="section-title">Cart</h1>
+					<p class="muted mb">Review your items</p>
+
+					<div class="cart-grid">
+						<!-- Cart Item -->
+						<div class="cart-item">
+							<div class="cart-item-image">
+								<img src="https://m.media-amazon.com/images/I/61XvYOrqVeL.jpg" alt="Wireless Headphones" />
+							</div>
+							<div class="cart-item-details">
+								<div class="cart-item-title">Wireless Headphones</div>
+								<div class="cart-item-price">$49.99</div>
+								<div class="cart-item-controls">
+									<button class="qty-btn">-</button>
+									<span class="qty">1</span>
+									<button class="qty-btn">+</button>
+									<button class="remove-btn">Remove</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Cart Summary -->
+						<div class="cart-summary">
+							<h2>Order Summary</h2>
+							<div class="summary-row">
+								<span>Subtotal (1 item)</span>
+								<span>$49.99</span>
+							</div>
+							<div class="summary-row">
+								<span>Estimated Shipping</span>
+								<span>FREE</span>
+							</div>
+							<div class="summary-row">
+								<span>Estimated Tax</span>
+								<span>$4.00</span>
+							</div>
+							<div class="summary-row total">
+								<span>Total</span>
+								<span>$53.99</span>
+							</div>
+							<button class="checkout-btn">Checkout</button>
+						</div>
+					</div>
+
+					<!-- Continue Shopping Link -->
+					<div class="continue-shopping">
+						<a href="index.html" class="muted">← Continue shopping</a>
+					</div>
+				</div>
+			</main>
+
+			<footer class="site-footer">
+				<div class="inner">
+					<div class="muted">Help & Contact &nbsp; | &nbsp; Returns & Orders</div>
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			// Add simple cart functionality
+			document.querySelectorAll('.qty-btn').forEach(btn => {
+				btn.addEventListener('click', function() {
+					const qtyEl = this.parentElement.querySelector('.qty');
+					let qty = parseInt(qtyEl.textContent);
+					
+					if (this.textContent === '+') {
+						qty = Math.min(qty + 1, 99);
+					} else {
+						qty = Math.max(qty - 1, 1);
+					}
+					
+					qtyEl.textContent = qty;
+				});
+			});
+
+			document.querySelector('.remove-btn').addEventListener('click', function() {
+				this.closest('.cart-item').remove();
+			});
+		</script>
+	</body>
+</html>
